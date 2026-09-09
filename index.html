@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#260d25">
+<title>♡ A Little Birthday Story ♡</title>
+
+<style>
+
+/* =========================================================
+   ROOT — DARK PINK + PURPLE
+========================================================= */
+
+:root{
+    --pink:#ff6f91;
+    --deep-pink:#d84f79;
+    --rose:#e45f86;
+    --cream:#fff4f8;
+    --wine:#fff4f7;
+    --soft:#e7b7c8;
+    --glass:rgba(62,38,60,.72);
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:"Segoe UI",sans-serif;
+    color:var(--wine);
+    background:#1d0b1d;
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+#app{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(126,48,112,.28),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(170,44,108,.23),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(89,42,112,.30),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #180919,
+            #2c0d29,
+            #250b25,
+            #160816
+        );
+}
+
+/* =========================================================
+   DECORATIVE LIGHT
+========================================================= */
+
+.glow{
+    position:absolute;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:rgba(224,61,119,.18);
+    filter:blur(70px);
+    pointer-events:none;
+}
+
+.glow.one{
+    top:-130px;
+    left:-100px;
+}
+
+.glow.two{
+    bottom:-130px;
+    right:-100px;
+}
+
+/* =========================================================
+   FLOATING PARTICLES
+========================================================= */
+
+#particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:2;
+}
+
+.particle{
+    position:absolute;
+    bottom:-30px;
+    opacity:0;
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+
+    0%{
+        transform:translateY(0) rotate(0deg) scale(.7);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.7;
+    }
+
+    100%{
+        transform:translateY(-110vh) rotate(30deg) scale(1.1);
+        opacity:0;
+    }
+
+}
+
+/* =========================================================
+   SCREENS
+========================================================= */
+
+.screen{
+    position:absolute;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+    z-index:5;
+}
+
+.screen.active{
+    display:flex;
+    animation:enter .75s cubic-bezier(.22,.8,.25,1);
+}
+
+.screen.leaving{
+    animation:leave .45s ease forwards;
+}
+
+@keyframes enter{
+
+    from{
+        opacity:0;
+        transform:scale(1.035) translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+
+}
+
+@keyframes leave{
+
+    to{
+        opacity:0;
+        transform:scale(.97) translateY(-12px);
+    }
+
+}
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.card{
+    position:relative;
+    width:min(460px,100%);
+    max-height:95vh;
+
+    padding:30px 23px;
+
+    border-radius:34px;
+
+    background:var(--glass);
+
+    border:1px solid rgba(255,130,164,.25);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.42),
+        0 0 40px rgba(186,57,113,.08),
+        inset 0 1px rgba(255,255,255,.10);
+
+    text-align:center;
+
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:170px;
+    height:170px;
+    top:-90px;
+    right:-80px;
+    background:rgba(255,105,145,.08);
+    border-radius:50%;
+    filter:blur(10px);
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.eyebrow{
+    font-size:.72rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#e96f91;
+    margin-bottom:13px;
+}
+
+h1,
+h2{
+    font-family:Georgia,serif;
+    font-weight:500;
+    color:#ff708f;
+}
+
+h1{
+    font-size:clamp(2.3rem,10vw,3.3rem);
+    line-height:1.05;
+}
+
+h2{
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#ead0da;
+    font-size:.92rem;
+    line-height:1.7;
+    margin-top:12px;
+}
+
+/* =========================================================
+   ORNAMENT
+========================================================= */
+
+.ornament{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin:17px 0;
+    color:#ff668b;
+    text-shadow:
+        0 0 10px rgba(255,82,126,.45);
+}
+
+.ornament::before,
+.ornament::after{
+    content:"";
+    width:55px;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #d9577e
+    );
+}
+
+.ornament::after{
+    transform:rotate(180deg);
+}
+
+/* =========================================================
+   HINT
+========================================================= */
+
+.hint-button{
+    margin:18px auto 10px;
+
+    border:0;
+    background:rgba(117,65,107,.42);
+
+    padding:10px 17px;
+    border-radius:999px;
+
+    color:#ff87a3;
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,.20),
+        0 0 15px rgba(216,68,119,.08);
+}
+
+.hint-box{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+
+    transition:.55s ease;
+
+    color:#e4b8c8;
+    font-size:.86rem;
+}
+
+.hint-box.show{
+    max-height:100px;
+    opacity:1;
+    padding:8px 0 12px;
+}
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-dots{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin:22px 0;
+}
+
+.dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    border:2px solid #ee6689;
+    transition:.25s;
+}
+
+.dot.active{
+    background:#ff668b;
+
+    box-shadow:
+        0 0 10px #ff668b,
+        0 0 22px rgba(255,75,125,.45);
+
+    transform:scale(1.12);
+}
+
+.keypad{
+    width:min(285px,100%);
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.key{
+    height:58px;
+
+    border:1px solid rgba(255,150,177,.22);
+    border-radius:19px;
+
+    background:
+        rgba(111,78,108,.43);
+
+    color:#fff6f9;
+    font-size:1.05rem;
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,.20),
+        inset 0 1px rgba(255,255,255,.07);
+
+    transition:.2s;
+}
+
+.key:active{
+    transform:scale(.9);
+}
+
+.key:hover{
+    background:rgba(139,80,125,.58);
+
+    box-shadow:
+        0 0 20px rgba(231,77,125,.12),
+        inset 0 1px rgba(255,255,255,.10);
+}
+
+.special{
+    color:#ff86a1;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.continue{
+    width:min(285px,100%);
+
+    margin:22px auto 0;
+
+    padding:15px 20px;
+
+    border:0;
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ed7192,
+            #a84471
+        );
+
+    color:white;
+
+    font-size:.95rem;
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 28px rgba(171,53,100,.32),
+        0 0 22px rgba(235,76,124,.10);
+
+
+
+    transition:.25s;
+}
+
+.continue:hover{
+    transform:translateY(-3px);
+}
+
+.continue:active{
+    transform:scale(.96);
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+.video-card{
+    padding-bottom:25px;
+}
+
+.video-frame{
+    margin-top:20px;
+
+    width:100%;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    background:#120711;
+
+    border:5px solid rgba(255,122,155,.20);
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.40);
+}
+
+.video-frame video{
+    width:100%;
+    display:block;
+    max-height:61vh;
+    background:#10060f;
+}
+
+/* =========================================================
+   LUXURY CAKE SCENE
+========================================================= */
+
+.cake-scene{
+    position:relative;
+
+    width:310px;
+    height:330px;
+
+    margin:8px auto 0;
+}
+
+/* glow behind cake */
+
+.cake-glow{
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    left:50%;
+    top:55px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:rgba(225,74,128,.25);
+
+    filter:blur(38px);
+}
+
+/* table */
+
+.cake-table{
+    position:absolute;
+
+    bottom:18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:280px;
+    height:22px;
+
+    border-radius:50%;
+
+    background:rgba(108,45,91,.30);
+
+    filter:blur(5px);
+}
+
+/* cake */
+
+.cake{
+    position:absolute;
+
+    bottom:40px;
+    left:50%;
+
+    width:210px;
+    height:185px;
+
+    transform:translateX(-50%);
+
+    transition:.7s;
+}
+
+/* bottom tier */
+
+.tier-bottom{
+    position:absolute;
+
+    bottom:0;
+    left:0;
+
+    width:210px;
+    height:75px;
+
+    border-radius:15px 15px 23px 23px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #c9789b,
+            #8c456d
+        );
+
+    box-shadow:
+        inset 0 -10px rgba(63,25,53,.20),
+        0 15px 25px rgba(0,0,0,.25);
+}
+
+/* middle tier */
+
+.tier-middle{
+    position:absolute;
+
+    bottom:58px;
+    left:20px;
+
+    width:170px;
+    height:65px;
+
+    border-radius:14px 14px 18px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #e8b3c7,
+            #b86d91
+        );
+
+    box-shadow:
+        0 7px 15px rgba(0,0,0,.20);
+}
+
+/* top tier */
+
+.tier-top{
+    position:absolute;
+
+    bottom:108px;
+    left:48px;
+
+    width:114px;
+    height:52px;
+
+    border-radius:13px 13px 17px 17px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f5dce5,
+            #c57b9d
+        );
+
+    box-shadow:
+        0 6px 14px rgba(0,0,0,.18);
+}
+
+/* icing */
+
+.icing{
+    position:absolute;
+
+    left:0;
+    top:-5px;
+
+    width:100%;
+    height:25px;
+
+    border-radius:50%;
+
+    background:#fff3f7;
+}
+
+.icing::after{
+    content:"";
+
+    position:absolute;
+
+    width:18px;
+    height:25px;
+
+    left:28px;
+    top:10px;
+
+    border-radius:0 0 15px 15px;
+
+    background:#fff3f7;
+
+    box-shadow:
+        42px 2px #fff3f7,
+        86px 0 #fff3f7,
+        132px 3px #fff3f7;
+}
+
+/* decorations */
+
+.roses{
+    position:absolute;
+
+    width:100%;
+
+    text-align:center;
+
+    color:#ff7898;
+
+    font-size:14px;
+
+    letter-spacing:13px;
+}
+
+/* candles */
+
+.candles{
+    position:absolute;
+
+    left:50%;
+    bottom:155px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:flex-end;
+
+    gap:15px;
+}
+
+.candle{
+    position:relative;
+
+    width:11px;
+    height:40px;
+
+    border-radius:5px;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            #d45a82 0 5px,
+            #fff 5px 10px
+        );
+}
+
+.candle:nth-child(2){
+    height:47px;
+}
+
+.candle:nth-child(3){
+    height:40px;
+}
+
+/* flame */
+
+.flame{
+    position:absolute;
+
+    left:50%;
+    top:-28px;
+
+    width:15px;
+    height:23px;
+
+    transform:translateX(-50%);
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    background:#ffc45c;
+
+    box-shadow:
+        0 0 15px #ffc45c,
+        0 0 35px rgba(255,190,70,.55);
+
+    animation:flicker .55s infinite alternate;
+}
+
+.flame::after{
+    content:"";
+
+    position:absolute;
+
+    left:4px;
+    top:7px;
+
+    width:7px;
+    height:11px;
+
+    border-radius:50%;
+
+    background:#fff5b5;
+}
+
+@keyframes flicker{
+
+    from{
+        transform:translateX(-50%) scale(1) rotate(-3deg);
+    }
+
+    to{
+        transform:translateX(-50%) scale(1.12) rotate(4deg);
+    }
+
+}
+
+.flame.off{
+    animation:flameOut .7s ease forwards;
+}
+
+@keyframes flameOut{
+
+    40%{
+        transform:translateX(-50%) translateY(-7px) scale(1.3);
+        opacity:.6;
+    }
+
+    100%{
+        transform:translateX(-50%) translateY(-35px) scale(.1);
+        opacity:0;
+    }
+
+}
+
+/* smoke */
+
+.smoke{
+    position:absolute;
+
+    left:50%;
+    top:-35px;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:rgba(190,165,180,.28);
+
+    opacity:0;
+}
+
+.smoke.show{
+    animation:smoke 2s ease forwards;
+}
+
+@keyframes smoke{
+
+    0%{
+        opacity:0;
+        transform:translate(-50%,0) scale(.4);
+    }
+
+    25%{
+        opacity:.7;
+    }
+
+    100%{
+        opacity:0;
+        transform:translate(-80px,-65px) scale(2);
+    }
+
+}
+
+/* cake cut */
+
+.cake.cut{
+    animation:cakeCut 1.2s ease forwards;
+}
+
+@keyframes cakeCut{
+
+    0%{
+        transform:translateX(-50%) scale(1);
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.05);
+    }
+
+    100%{
+        transform:translateX(-50%) scale(.98) rotate(-1deg);
+    }
+
+}
+
+/* =========================================================
+   CAKE MESSAGE
+========================================================= */
+
+.cake-message{
+    min-height:25px;
+
+    color:#e6b4c6;
+
+    font-size:.86rem;
+}
+
+/* =========================================================
+   LETTER / LONG MESSAGE
+========================================================= */
+
+.letter-wrapper{
+    position:relative;
+
+    margin-top:20px;
+
+    height:min(52vh,480px);
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(61,37,57,.94),
+            rgba(46,25,44,.95)
+        );
+
+    border:1px solid rgba(232,107,145,.20);
+
+    box-shadow:
+        inset 0 0 35px rgba(213,75,123,.08),
+        0 12px 30px rgba(0,0,0,.28);
+
+    overflow:hidden;
+}
+
+/* scroll area */
+
+.letter-scroll{
+    height:100%;
+
+    overflow-y:auto;
+
+    padding:30px 23px 35px;
+
+    text-align:left;
+
+    scroll-behavior:smooth;
+
+    scrollbar-width:thin;
+    scrollbar-color:#c86b8d transparent;
+}
+
+.letter-scroll::-webkit-scrollbar{
+    width:5px;
+}
+
+.letter-scroll::-webkit-scrollbar-thumb{
+    background:#c86b8d;
+    border-radius:10px;
+}
+
+/* paper lines */
+
+.letter-scroll{
+    background-image:
+        linear-gradient(
+            rgba(224,111,143,.07) 1px,
+            transparent 1px
+        );
+
+    background-size:100% 31px;
+}
+
+/* letter */
+
+.letter-title{
+    text-align:center;
+
+    font-family:Georgia,serif;
+
+    color:#ff7899;
+
+    font-size:1.25rem;
+
+    margin-bottom:20px;
+}
+
+.letter-text{
+    font-family:
+        "Segoe Print",
+        "Bradley Hand",
+        cursive;
+
+    color:#efd5df;
+
+    font-size:1rem;
+
+    line-height:2;
+
+    white-space:pre-line;
+}
+
+.letter-end{
+    text-align:center;
+
+    margin-top:30px;
+
+    color:#ee789b;
+
+    font-family:Georgia,serif;
+
+    font-size:1.3rem;
+}
+
+/* scroll indicator */
+
+.scroll-hint{
+    position:absolute;
+
+    left:50%;
+    bottom:9px;
+
+    transform:translateX(-50%);
+
+    padding:6px 13px;
+
+    border-radius:999px;
+
+    background:rgba(74,43,68,.90);
+
+    color:#f17b9c;
+
+    font-size:.7rem;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.25);
+
+    animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+
+    0%,100%{
+        transform:translateX(-50%) translateY(0);
+    }
+
+    50%{
+        transform:translateX(-50%) translateY(-5px);
+    }
+
+}
+
+/* =========================================================
+   END
+========================================================= */
+
+.end-symbol{
+    font-size:4rem;
+
+    color:#ff668c;
+
+    text-shadow:
+        0 0 12px rgba(255,70,125,.50),
+        0 0 30px rgba(255,70,125,.25);
+
+    animation:heartBeat 1.4s infinite;
+
+    margin-bottom:15px;
+}
+
+@keyframes heartBeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.18);
+    }
+
+}
+
+.end-line{
+    margin:20px auto;
+
+    width:100px;
+    height:1px;
+
+    background:#cf7191;
+}
+
+.signature{
+    font-family:Georgia,serif;
+
+    font-style:italic;
+
+    color:#e995ad;
+
+    margin-top:20px;
+}
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti{
+    position:fixed;
+
+    top:-20px;
+
+    width:7px;
+    height:13px;
+
+    z-index:100;
+
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+
+    to{
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity:0;
+    }
+
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.shake{
+    animation:shake .4s;
+}
+
+@keyframes shake{
+
+    20%{transform:translateX(-9px);}
+    40%{transform:translateX(9px);}
+    60%{transform:translateX(-6px);}
+    80%{transform:translateX(6px);}
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:430px){
+
+    .screen{
+        padding:10px;
+    }
+
+    .card{
+        padding:25px 16px;
+        border-radius:29px;
+    }
+
+    h1{
+        font-size:2.4rem;
+    }
+
+    h2{
+        font-size:1.8rem;
+    }
+
+    .cake-scene{
+        transform:scale(.88);
+        margin-top:-10px;
+        margin-bottom:-15px;
+    }
+
+    .letter-wrapper{
+        height:55vh;
+    }
+
+    .letter-scroll{
+        padding:28px 18px 35px;
+    }
+
+    .letter-text{
+        font-size:.94rem;
+        line-height:1.95;
+    }
+
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media(max-height:700px){
+
+    .card{
+        padding-top:20px;
+        padding-bottom:20px;
+    }
+
+    .cake-scene{
+        transform:scale(.72);
+        margin-top:-40px;
+        margin-bottom:-50px;
+    }
+
+    .video-frame video{
+        max-height:50vh;
+    }
+
+}
+
+/* =========================================================
+   MOBILE PHONE FIX — LAYOUT ONLY
+   Keeps the original design, colors and content unchanged.
+========================================================= */
+
+@media (max-width:600px){
+
+    html,
+    body{
+        width:100%;
+        min-height:100%;
+        overflow-x:hidden;
+    }
+
+    body{
+        overflow-y:auto;
+    }
+
+    #app{
+        width:100%;
+        min-height:100svh;
+        height:auto;
+        overflow:visible;
+    }
+
+    .screen{
+        position:absolute;
+        inset:0;
+        width:100%;
+        min-height:100svh;
+        height:auto;
+        overflow-y:auto;
+        overflow-x:hidden;
+        align-items:flex-start;
+        justify-content:center;
+        padding:
+            max(10px, env(safe-area-inset-top))
+            max(10px, env(safe-area-inset-right))
+            max(10px, env(safe-area-inset-bottom))
+            max(10px, env(safe-area-inset-left));
+    }
+
+    .screen.active{
+        position:absolute;
+    }
+
+    .card{
+        width:100%;
+        max-width:460px;
+        max-height:none;
+        min-height:0;
+        margin:auto 0;
+        overflow:visible;
+    }
+
+    .video-card{
+        width:100%;
+    }
+
+    .video-frame{
+        width:100%;
+        max-width:100%;
+    }
+
+    .video-frame video{
+        width:100%;
+        height:auto;
+        max-width:100%;
+        max-height:none;
+        object-fit:contain;
+    }
+
+    .cake-scene{
+        max-width:100%;
+    }
+
+    .keypad{
+        width:min(285px,100%);
+    }
+
+    .continue{
+        width:min(285px,100%);
+        max-width:100%;
+    }
+
+    .letter-wrapper{
+        width:100%;
+        max-width:100%;
+    }
+
+    .letter-scroll{
+        width:100%;
+        max-width:100%;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    h1{
+        max-width:100%;
+        overflow-wrap:break-word;
+    }
+
+    h2{
+        max-width:100%;
+        overflow-wrap:break-word;
+    }
+
+}
+
+@media (max-width:360px){
+
+    .screen{
+        padding:8px;
+    }
+
+    .card{
+        padding-left:13px;
+        padding-right:13px;
+    }
+
+    .keypad{
+        gap:8px;
+    }
+
+    .key{
+        height:54px;
+        border-radius:17px;
+    }
+
+    .letter-scroll{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .letter-text{
+        font-size:.91rem;
+        line-height:1.9;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div id="app">
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <div id="particles"></div>
+
+
+<!-- ========================================================
+     SCREEN 1 — PASSWORD
+========================================================= -->
+
+<section class="screen active" id="passwordScreen">
+
+    <div class="card" id="passwordCard">
+
+        <div class="eyebrow">
+            Happiest 18th Birthday
+        </div>
+
+        <h1>
+            ♡ BHAKTI ♡
+        </h1>
+
+        <div class="ornament">✦</div>
+
+        <p class="subtitle">
+            Something is waiting for you.
+            <br>
+            Unlock it to begin your little birthday story. ♡
+        </p>
+
+        <button
+            class="hint-button"
+            onclick="toggleHint()">
+
+            💡 &nbsp; Need a little hint?
+
+        </button>
+
+        <div class="hint-box" id="hintBox">
+
+            
+            <br>
+           Thing about the year when a special gurll (You🫵🏻) was born ... ♡
+
+        </div>
+
+
+        <div class="password-dots">
+
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+
+        </div>
+
+
+        <div class="keypad">
+
+            <button class="key" onclick="keyPress('1')">1</button>
+            <button class="key" onclick="keyPress('2')">2</button>
+            <button class="key" onclick="keyPress('3')">3</button>
+
+            <button class="key" onclick="keyPress('4')">4</button>
+            <button class="key" onclick="keyPress('5')">5</button>
+            <button class="key" onclick="keyPress('6')">6</button>
+
+            <button class="key" onclick="keyPress('7')">7</button>
+            <button class="key" onclick="keyPress('8')">8</button>
+            <button class="key" onclick="keyPress('9')">9</button>
+
+            <button class="key special" onclick="clearPass()">⌫</button>
+            <button class="key" onclick="keyPress('0')">0</button>
+            <button class="key special" onclick="clearPass()">C</button>
+
+        </div>
+
+
+        <p
+            id="passwordMessage"
+            style="
+            margin-top:13px;
+            min-height:18px;
+            font-size:.78rem;
+            color:#ed7192;
+            ">
+        </p>
+
+
+        <button
+            class="continue hidden"
+            id="passwordContinue"
+            onclick="goTo('video1Screen')">
+
+            Continue ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     SCREEN 2 — VIDEO 1
+========================================================= -->
+
+<section class="screen" id="video1Screen">
+
+    <div class="card video-card">
+
+        <div class="eyebrow">
+            chapter one
+        </div>
+
+        <h2>
+            🎬 Lemme Introduce Bhakti
+        </h2>
+
+        <p class="subtitle">
+            Take your time...
+            <br>
+            this one is just for you. ♡
+        </p>
+
+
+        <div class="video-frame">
+
+            <video
+                id="video1"
+                controls
+                playsinline
+                preload="metadata">
+
+                <source
+                    src="1st.mp4"
+                    type="video/mp4">
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+
+        <button
+            class="continue"
+            onclick="goTo('cakeScreen')">
+
+            Continue ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     SCREEN 3 — CAKE
+========================================================= -->
+
+<section class="screen" id="cakeScreen">
+
+    <div class="card">
+
+        <div class="eyebrow">
+            chapter two
+        </div>
+
+        <h2>
+            Make A Wish ✨
+        </h2>
+
+        <p class="subtitle">
+            Close your eyes...
+            <br>
+            make your sweetest wish. ♡
+        </p>
+
+
+        <div class="cake-scene">
+
+            <div class="cake-glow"></div>
+
+
+            <div class="cake">
+
+                <div class="candles">
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                        <div class="smoke"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="tier-top">
+
+                    <div class="icing"></div>
+
+                    <div class="roses">
+                        ♡
+                    </div>
+
+                </div>
+
+
+                <div class="tier-middle">
+
+                    <div class="icing"></div>
+
+                    <div class="roses">
+                        ✦
+                    </div>
+
+                </div>
+
+
+                <div class="tier-bottom">
+
+                    <div class="icing"></div>
+
+                    <div class="roses">
+                        ♡
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cake-table"></div>
+
+        </div>
+
+
+        <p
+            class="cake-message"
+            id="cakeMessage">
+
+            Tap below when you're ready to blow the candles. 🕯️
+
+        </p>
+
+
+        <button
+            class="continue"
+            id="blowButton"
+            onclick="blowCandles()">
+
+            💨 Blow the Candles
+
+        </button>
+
+
+        <button
+            class="continue hidden"
+            id="cakeContinue"
+            onclick="goTo('letter1Screen')">
+
+            Continue ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     SCREEN 4 — LETTER 1
+========================================================= -->
+
+<section class="screen" id="letter1Screen">
+
+    <div class="card">
+
+        <div class="eyebrow">
+            chapter three
+        </div>
+
+        <h2>
+            💌 Happy Birthday Bakrii
+        </h2>
+
+        <p class="subtitle">
+            A Birthday Wish
+        </p>
+
+
+        <div class="letter-wrapper">
+
+            <div class="letter-scroll">
+
+                <div class="letter-title">
+                    To Someone Very Special ♡
+                </div>
+
+
+                <div class="letter-text">
+
+Happy Birthday, my dear Bakri jii.
+
+Many many returns of the dayy dumboo.
+
+On your birthday, I just want to wish you endless happiness, success, good health, and everything your heart desires.
+
+You deserve the sweetest things life has to offer.
+
+I simply hope that when you read this, you smile.
+					
+                    <!--
+                    =================================================
+                    REPLACE THE TEXT ABOVE WITH YOUR LONG MESSAGE
+                    =================================================
+                    -->
+
+                </div>
+
+
+                <div class="letter-end">
+                    ♡ With lots of love ♡
+                </div>
+
+            </div>
+
+
+            <div class="scroll-hint">
+                ↓ scroll to read ↓
+            </div>
+
+        </div>
+
+
+        <button
+            class="continue"
+            onclick="goTo('video2Screen')">
+
+            Continue ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     SCREEN 5 — VIDEO 2
+========================================================= -->
+
+<section class="screen" id="video2Screen">
+
+    <div class="card video-card">
+
+        <div class="eyebrow">
+            chapter four
+        </div>
+
+        <h2>
+            🎬 One More Thing
+        </h2>
+
+        <p class="subtitle">
+            Because one surprise wasn't enough. ♡
+        </p>
+
+
+        <div class="video-frame">
+
+            <video
+                id="video2"
+                controls
+                playsinline
+                preload="metadata">
+
+                <source
+                    src="2.mp4"
+                    type="video/mp4">
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+
+        <button
+            class="continue"
+            onclick="goTo('letter2Screen')">
+
+            Continue ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     SCREEN 6 — LETTER 2
+========================================================= -->
+
+<section class="screen" id="letter2Screen">
+
+    <div class="card">
+
+        <div class="eyebrow">
+            chapter five
+        </div>
+
+        <h2>
+            💗 A Little More
+        </h2>
+
+        <p class="subtitle">
+            Some things deserve more than a few words.
+        </p>
+
+
+        <div class="letter-wrapper">
+
+            <div class="letter-scroll">
+
+                <div class="letter-title">
+                    Something From My Heart ♡
+                </div>
+
+
+                <div class="letter-text">
+
+First of all once again Happiest b'day bookie.
+I hope you are doing well.
+It's going to be around 1 yr that we haven't talked to each other but mine love for you is just same as always have been.
+You are literally a special person for me idk how to explain bcoz you mean to me soo soo much.
+You came into my life and became such an important person that it feels so awkward to imagine my life without you.
+Ik our past is beautiful as well as terrifying also but I can't even think to move on.
+Like come on yrr how can I move on from a gorgeous gurl like you. It's a shitty thing.
+Well I understand move on is noy my type and I living with it.
+Whenever I try to forgot you the more you came into my mind.
+You are the only chapter that i want to repeat again nd again without thinking twice.
+After you left I got to realise that that no can replace you be like you bcoz you're that precious (ofc for me).
+I mean that how did you manage or handle such a loser like me I kinda appreciate this.
+Tbh you are literally an amazing gem and I juss pray that I don't wanna loose you.
+There are so many things I could say, so many memories I could talk about, and probably not enough words to properly explain everything I feel.
+These words are not enough I think from now onwards I should try to write a book on you (Hehehe).
+Well u r cuteeeeeee.....
+
+
+
+I like your eyes. I like your smile.
+Huhh not again I am falling love with you.					
+					
+
+
+                    <!--
+                    =================================================
+                    REPLACE WITH YOUR SECOND LONG MESSAGE
+                    =================================================
+                    -->
+
+                </div>
+
+
+                <div class="letter-end">
+                    ♡ You mean more than you know ♡
+                </div>
+
+            </div>
+
+
+            <div class="scroll-hint">
+                ↓ keep reading ↓
+            </div>
+
+        </div>
+
+
+        <button
+            class="continue"
+            onclick="goTo('letter3Screen')">
+
+            Continue ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     SCREEN 7 — LETTER 3
+========================================================= -->
+
+<section class="screen" id="letter3Screen">
+
+    <div class="card">
+
+        <div class="eyebrow">
+            final chapter
+        </div>
+
+        <h2>
+            💌 One Last Thing
+        </h2>
+
+        <p class="subtitle">
+            Before this little story ends...
+        </p>
+
+
+        <div class="letter-wrapper">
+
+            <div class="letter-scroll">
+
+                <div class="letter-title">
+                    Always Remember ♡
+                </div>
+
+
+                <div class="letter-text">
+
+No matter where life takes you, I hope you always remember how special you are.
+And
+Note it.. If the world feels you heavy juss remember that I am always there for you.
+					
+If you ask me how I am I will definitely lie 
+But the truth is 
+					I need you
+					I wanna talk to you 
+					I badly want you...
+
+I am still in love with you.
+		
+I hope this new chapter of your life brings you happiness, peace, beautiful surprises, and countless moments that you will want to remember forever.
+
+I hope seeing this will make you smile. It suits you bucks.
+					
+Byiee					
+                    <!--
+                    =================================================
+                    REPLACE WITH YOUR FINAL LONG MESSAGE
+                    =================================================
+                    -->
+
+                </div>
+
+
+                <div class="letter-end">
+                    Love you Bakriii. ♡
+                </div>
+
+            </div>
+
+
+            <div class="scroll-hint">
+                ↓ one last read ↓
+            </div>
+
+        </div>
+
+
+        <button
+            class="continue"
+            onclick="goTo('endScreen')">
+
+            Continue ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     SCREEN 8 — END
+========================================================= -->
+
+<section class="screen" id="endScreen">
+
+    <div class="card">
+
+        <div class="end-symbol">
+            ♡
+        </div>
+
+        <div class="eyebrow">
+            the end
+        </div>
+
+        <h1>
+            Happy Birthday Bakri
+        </h1>
+
+        <div class="ornament">
+            ✦
+        </div>
+
+        <p class="subtitle">
+            
+			Raat Jyda ho gyi hai
+           It's better to sleep right now Gotcha na...
+
+            <br><br>
+					
+					(Logo ko jeene ke liye saans chaiye
+					Hume toh apka sath chaiyee...)
+
+        </p>
+
+        <div class="end-line"></div>
+
+        <div class="signature">
+            Enjoy your day ma'am ♡
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+const PASSWORD = "2008";
+
+let entered = "";
+
+function keyPress(number){
+
+    if(entered.length >= 4){
+        return;
+    }
+
+    entered += number;
+
+    updateDots();
+
+    if(entered.length === 4){
+
+        if(entered === PASSWORD){
+
+            document.getElementById("passwordMessage")
+                .textContent = "Unlocked... ♡";
+
+            document
+                .getElementById("passwordContinue")
+                .classList.remove("hidden");
+
+            createParticles(15);
+
+        }
+
+        else{
+
+            const card =
+                document.getElementById("passwordCard");
+
+            document.getElementById("passwordMessage")
+                .textContent =
+                "Not quite... try again, cutie ♡";
+
+            card.classList.remove("shake");
+
+            void card.offsetWidth;
+
+            card.classList.add("shake");
+
+            setTimeout(()=>{
+
+                entered = "";
+
+                updateDots();
+
+            },650);
+
+        }
+
+    }
+
+}
+
+
+function clearPass(){
+
+    entered = "";
+
+    updateDots();
+
+    document.getElementById("passwordMessage")
+        .textContent = "";
+
+}
+
+
+function updateDots(){
+
+    const dots =
+        document.querySelectorAll(".dot");
+
+    dots.forEach((dot,index)=>{
+
+        dot.classList.toggle(
+            "active",
+            index < entered.length
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+function toggleHint(){
+
+    document
+        .getElementById("hintBox")
+        .classList.toggle("show");
+
+}
+
+
+/* =========================================================
+   SCREEN TRANSITION
+========================================================= */
+
+function goTo(id){
+
+    const current =
+        document.querySelector(".screen.active");
+
+    const next =
+        document.getElementById(id);
+
+    if(!current || !next){
+        return;
+    }
+
+    current.classList.add("leaving");
+
+    setTimeout(()=>{
+
+        current.classList.remove(
+            "active",
+            "leaving"
+        );
+
+        next.classList.add("active");
+
+        createParticles(7);
+
+        window.scrollTo(0,0);
+
+    },430);
+
+}
+
+
+/* =========================================================
+   CANDLE
+========================================================= */
+
+let candleFinished = false;
+
+function blowCandles(){
+
+    if(candleFinished){
+        return;
+    }
+
+    candleFinished = true;
+
+    const flames =
+        document.querySelectorAll(".flame");
+
+    const smoke =
+        document.querySelectorAll(".smoke");
+
+    const button =
+        document.getElementById("blowButton");
+
+    const message =
+        document.getElementById("cakeMessage");
+
+    flames.forEach(flame=>{
+        flame.classList.add("off");
+    });
+
+    smoke.forEach((s,index)=>{
+
+        setTimeout(()=>{
+            s.classList.add("show");
+        },index*100);
+
+    });
+
+    button.disabled = true;
+
+    message.textContent =
+        "Wish made... ♡";
+
+    createParticles(15);
+
+
+    setTimeout(()=>{
+
+        const cake =
+            document.querySelector(".cake");
+
+        cake.classList.add("cut");
+
+        message.textContent =
+            "A little birthday magic... 🎂✨";
+
+        createConfetti(65);
+        createParticles(25);
+
+
+        setTimeout(()=>{
+
+            document
+                .getElementById("cakeContinue")
+                .classList.remove("hidden");
+
+        },1100);
+
+    },850);
+
+}
+
+
+/* =========================================================
+   FLOATING PARTICLES
+========================================================= */
+
+const symbols = [
+    "♡",
+    "♥",
+    "✦",
+    "✧",
+    "🌸",
+    "💕"
+];
+
+function createParticle(){
+
+    const particle =
+        document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.textContent =
+        symbols[
+            Math.floor(
+                Math.random()*symbols.length
+            )
+        ];
+
+    particle.style.left =
+        Math.random()*100 + "%";
+
+    particle.style.fontSize =
+        (10 + Math.random()*16) + "px";
+
+    particle.style.animationDuration =
+        (5 + Math.random()*6) + "s";
+
+    document
+        .getElementById("particles")
+        .appendChild(particle);
+
+    setTimeout(()=>{
+        particle.remove();
+    },12000);
+
+}
+
+
+function createParticles(amount){
+
+    for(let i=0;i<amount;i++){
+
+        setTimeout(
+            createParticle,
+            i*90
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti(amount){
+
+    for(let i=0;i<amount;i++){
+
+        const piece =
+            document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.style.left =
+            Math.random()*100 + "vw";
+
+        piece.style.background =
+            [
+                "#ff6f91",
+                "#d9577e",
+                "#b95c91",
+                "#fff",
+                "#a56fa1"
+            ][
+                Math.floor(Math.random()*5)
+            ];
+
+        piece.style.animationDelay =
+            Math.random()*.7 + "s";
+
+        piece.style.transform =
+            `rotate(${Math.random()*360}deg)`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+            piece.remove();
+        },4000);
+
+    }
+
+}
+
+
+/* =========================================================
+   CONTINUOUS SUBTLE PARTICLES
+========================================================= */
+
+setInterval(()=>{
+    createParticle();
+},1100);
+
+createParticles(8);
+
+
+/* =========================================================
+   VIDEO END EVENTS
+========================================================= */
+
+document
+    .getElementById("video1")
+    .addEventListener("ended",()=>{
+
+        createParticles(10);
+
+    });
+
+
+document
+    .getElementById("video2")
+    .addEventListener("ended",()=>{
+
+        createParticles(10);
+
+    });
+
+
+</script>
+
+</body>
+</html>
